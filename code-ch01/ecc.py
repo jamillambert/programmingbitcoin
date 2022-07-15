@@ -36,18 +36,15 @@ class FieldElement:
     def __sub__(self, other):
         if self.prime != other.prime:
             raise TypeError('Cannot subtract two numbers in different Fields')
-        # self.num and other.num are the actual values
-        # self.prime is what we need to mod against
+        num = (self.num - other.num) % self.prime 
+        return self.__class__(num, self.prime)
         # We return an element of the same class
-        raise NotImplementedError
 
     def __mul__(self, other):
         if self.prime != other.prime:
             raise TypeError('Cannot multiply two numbers in different Fields')
-        # self.num and other.num are the actual values
-        # self.prime is what we need to mod against
-        # We return an element of the same class
-        raise NotImplementedError
+        num = (self.num * other.num) % self.prime 
+        return self.__class__(num, self.prime)
 
     # tag::source3[]
     def __pow__(self, exponent):
