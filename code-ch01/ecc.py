@@ -56,7 +56,7 @@ class FieldElement:
     def __truediv__(self, other):
         if self.prime != other.prime:
             raise TypeError('Cannot divide two numbers in different Fields')
-        num = other.num * pow(self.num, self.prime-2, self.prime) # using fermat's little theorem
+        num = self.num * pow(other.num, self.prime-2, self.prime) % self.prime # using fermat's little theorem
         return self.__class__(num, self.prime)
 
 
